@@ -7,16 +7,13 @@ import { withRouter } from 'react-router-dom'
 
 import { List, VideoItem } from 'components'
 import * as VideosActions from 'actions/videos'
-import { getFilteredVideos } from 'reducers/videos'
 import { videoShape } from 'constants/Shapes'
-import ReactRouterPropTypes from 'react-router-prop-types'
 
 class Playlist extends React.Component {
   static propTypes = {
     videos: T.arrayOf(videoShape).isRequired,
     addVideo: T.func.isRequired,
-    match: ReactRouterPropTypes.match.isRequired,
-    history: ReactRouterPropTypes.history.isRequired,
+    playlistId: T.string.isRequired,
   }
 
   state = {
@@ -26,34 +23,12 @@ class Playlist extends React.Component {
     playlist: '',
   }
 
-  componentDidMount = () => {
-    const {
-      match: {
-        params: { playlistId, videoId },
-      },
-      history,
-      videos,
-    } = this.props
-    if (!playlistId) {
-      history.push('/')
-    }
-    if (playlistId && !videoId && videos.length) {
-      history.push(`/${playlistId}/${videos[0].id}`)
-    }
-  }
-
-  handleInputChange = (e, fieldName) => {
-    this.setState({
-      [fieldName]: e.target.value,
-    })
-  }
-
   handleSubmit = e => {
     this.props.addVideo({
       videoUrl: this.state.videoUrl,
       title: this.state.title,
       artist: this.state.artist,
-      playlist: this.props.match.params.playlistId,
+      playlist: this.props.playlistId,
       createdAt: new Date().getTime(),
       id: uuid(),
     })
@@ -96,25 +71,11 @@ class Playlist extends React.Component {
   }
 }
 
-const mapStateToProps = (
-  state,
-  {
-    match: {
-      params: { playlistId },
-    },
-  }
-) => ({
-  videos: getFilteredVideos(state, playlistId),
-})
-
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(VideosActions, dispatch)
 }
 
 export default compose(
   withRouter,
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )
+  connect(mapDispatchToProps)
 )(Playlist)
