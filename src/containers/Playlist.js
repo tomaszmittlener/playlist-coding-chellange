@@ -1,11 +1,7 @@
 import React from 'react'
-import { bindActionCreators, compose } from 'redux'
-import { connect } from 'react-redux'
 import T from 'prop-types'
-import { withRouter } from 'react-router-dom'
 
 import { List, VideoItem } from 'components'
-import * as VideosActions from 'actions/videos'
 import { videoShape } from 'constants/Shapes'
 
 class Playlist extends React.Component {
@@ -24,11 +20,4 @@ class Playlist extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators(VideosActions, dispatch)
-}
-
-export default compose(
-  withRouter,
-  connect(mapDispatchToProps)
-)(Playlist)
+export default Playlist

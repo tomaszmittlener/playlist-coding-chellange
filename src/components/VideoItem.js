@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { lighten } from 'polished'
-
 import { ms } from 'styles/helpers'
 import { videoShape } from 'constants/Shapes'
 

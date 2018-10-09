@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 import ReactRouterPropTypes from 'react-router-prop-types'
 import { videoShape } from 'constants/Shapes'
 
-import VideoPlayer from 'components/VideoPlayer'
+import { VideoPlayer } from 'components'
 
 class Video extends React.Component {
   static propTypes = {
@@ -35,7 +35,7 @@ class Video extends React.Component {
       <div>
         <h2>{title}</h2>
         <h3>{artist}</h3>
-        <VideoPlayer videoUrl={videoUrl} onEnded={this.handleOnVideoEnd} />
+        <VideoPlayer videoUrl={videoUrl} onEnded={this.handleOnVideoEnd} controls playing />
       </div>
     )
   }
