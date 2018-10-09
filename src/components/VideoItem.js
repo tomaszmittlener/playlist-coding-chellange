@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { lighten } from 'polished'
 
 import { ms } from 'styles/helpers'
-import { playlistShape } from 'constants/Shapes'
+import { videoShape } from 'constants/Shapes'
 
 const Container = styled.li`
   padding: ${ms(-1)} ${ms(2)};
@@ -18,27 +18,33 @@ const Container = styled.li`
   }
 `
 
-const Name = styled(Link)`
+const Item = styled(Link)`
   display: flex;
+  flex-direction: column;
   align-items: center;
 `
+const Title = styled.h2``
+const ArtistName = styled.h4``
 
-class PlaylistItem extends Component {
+class VideoItem extends Component {
+  static propTypes = {
+    item: videoShape.isRequired,
+  }
+
   render() {
     const {
-      item: { title, id },
+      item: { title, artist, playlist, id },
     } = this.props
 
     return (
       <Container>
-        <Name to={id}>{title}</Name>
+        <Item to={`/${playlist}/${id}`}>
+          <Title>{title}</Title>
+          <ArtistName>{artist}</ArtistName>
+        </Item>
       </Container>
     )
   }
 }
 
-PlaylistItem.propTypes = {
-  item: playlistShape.isRequired,
-}
-
-export default PlaylistItem
+export default VideoItem

@@ -5,13 +5,11 @@ import T from 'prop-types'
 import uuid from 'uuid/v4'
 import { withRouter } from 'react-router-dom'
 
-import { List } from 'components'
+import { List, VideoItem } from 'components'
 import * as VideosActions from 'actions/videos'
 import { getFilteredVideos } from 'reducers/videos'
 import { videoShape } from 'constants/Shapes'
 import ReactRouterPropTypes from 'react-router-prop-types'
-
-const Item = () => <div>test</div>
 
 class Playlist extends React.Component {
   static propTypes = {
@@ -31,16 +29,16 @@ class Playlist extends React.Component {
   componentDidMount = () => {
     const {
       match: {
-        params: { playlist, video },
+        params: { playlistId, videoId },
       },
       history,
       videos,
     } = this.props
-    if (!playlist) {
+    if (!playlistId) {
       history.push('/')
     }
-    if (playlist && !video && videos.length) {
-      history.push(`/${playlist}/${videos[0].id}`)
+    if (playlistId && !videoId && videos.length) {
+      history.push(`/${playlistId}/${videos[0].id}`)
     }
   }
 
@@ -55,7 +53,7 @@ class Playlist extends React.Component {
       videoUrl: this.state.videoUrl,
       title: this.state.title,
       artist: this.state.artist,
-      playlist: this.props.match.params.playlist,
+      playlist: this.props.match.params.playlistId,
       createdAt: new Date().getTime(),
       id: uuid(),
     })
@@ -92,7 +90,7 @@ class Playlist extends React.Component {
           />
           <input type="submit" value="Submit" />
         </form>
-        <List items={videos} itemComponent={Item} />
+        <List items={videos} itemComponent={VideoItem} />
       </div>
     )
   }
@@ -102,11 +100,11 @@ const mapStateToProps = (
   state,
   {
     match: {
-      params: { playlist },
+      params: { playlistId },
     },
   }
 ) => ({
-  videos: getFilteredVideos(state, playlist),
+  videos: getFilteredVideos(state, playlistId),
 })
 
 function mapDispatchToProps(dispatch) {

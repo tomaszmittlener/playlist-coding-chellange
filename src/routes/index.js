@@ -7,7 +7,7 @@ function Routes() {
     <Router>
       <Switch>
         <Route path="/" exact component={HomeView} />
-        <Route path="/:playlist?/:video?" exact component={VideoView} />
+        <Route path="/:playlistId?/:videoId?" exact component={VideoView} />
       </Switch>
     </Router>
   )
