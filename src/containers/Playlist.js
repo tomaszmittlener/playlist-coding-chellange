@@ -18,6 +18,7 @@ class Playlist extends React.Component {
     videos: T.arrayOf(videoShape).isRequired,
     addVideo: T.func.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
+    history: ReactRouterPropTypes.history.isRequired,
   }
 
   state = {
@@ -25,6 +26,22 @@ class Playlist extends React.Component {
     title: '',
     artist: '',
     playlist: '',
+  }
+
+  componentDidMount = () => {
+    const {
+      match: {
+        params: { playlist, video },
+      },
+      history,
+      videos,
+    } = this.props
+    if (!playlist) {
+      history.push('/')
+    }
+    if (playlist && !video && videos.length) {
+      history.push(`/${playlist}/${videos[0].id}`)
+    }
   }
 
   handleInputChange = (e, fieldName) => {

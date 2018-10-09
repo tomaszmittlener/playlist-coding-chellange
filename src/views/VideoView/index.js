@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Playlist } from 'containers'
 
-class PlaylistView extends Component {
+class VideoView extends Component {
   render() {
     return <Playlist />
   }
 }
 
-export default PlaylistView
+export default VideoView

@@ -5,12 +5,10 @@ import T from 'prop-types'
 import uuid from 'uuid/v4'
 import { withRouter } from 'react-router-dom'
 
-import { List } from 'components'
+import { List, PlaylistItem } from 'components'
 import * as PlaylistsActions from 'actions/playlists'
 import { getAllPlaylists } from 'reducers/playlists'
 import { playlistShape } from 'constants/Shapes'
-
-const Item = () => <div>test</div>
 
 class PlaylistsList extends React.Component {
   static propTypes = {
@@ -47,7 +45,7 @@ class PlaylistsList extends React.Component {
           <input type="text" name="name" placeholder="title" value={title} onChange={e => this.handleInputChange(e)} />
           <input type="submit" value="Submit" />
         </form>
-        <List items={playlists} itemComponent={Item} />
+        <List items={playlists} itemComponent={PlaylistItem} />
       </div>
     )
   }
