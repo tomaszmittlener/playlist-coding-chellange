@@ -28,6 +28,7 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
+    "polished": "^2.2.0",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
@@ -54,19 +55,19 @@
     "whatwg-fetch": "2.0.3"
   },
   "devDependencies": {
-    "node-plop": "^0.5.5",
-    "plop": "^1.7.4",
-    "eslint-config-prettier": "^2.7.0",
-    "lint-staged": "^4.3.0",
-    "prettier": "^1.8.0",
-    "husky": "^0.14.3",
-    "eslint": "^4.10.0",
     "babel-eslint": "^8.0.2",
+    "eslint": "^4.10.0",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.7.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
-    "eslint-plugin-prettier": "^2.3.1"
+    "husky": "^0.14.3",
+    "lint-staged": "^4.3.0",
+    "node-plop": "^0.5.5",
+    "plop": "^1.7.4",
+    "prettier": "^1.8.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
