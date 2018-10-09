@@ -5,10 +5,12 @@ import ReactPlayer from 'react-player'
 class VideoPlayer extends Component {
   static propTypes = {
     videoUrl: T.string.isRequired,
+    onEnded: T.func.isRequired,
   }
 
   render() {
-    return <ReactPlayer url={this.props.videoUrl} playing />
+    const { onEnded, videoUrl } = this.props
+    return <ReactPlayer url={videoUrl} onEnded={onEnded} playing controls />
   }
 }
 

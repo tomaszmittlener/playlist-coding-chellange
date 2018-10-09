@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { Playlist, Video } from 'containers'
+import { Playlist, Video, AddVideoForm } from 'containers'
 import T from 'prop-types'
 import { videoShape } from 'constants/Shapes'
-import { getFilteredVideosByPlaylistId, getVideoById } from 'reducers/videos'
+import { getFilteredVideosByPlaylistId, getVideoById, getNextVideoFromPlaylist } from 'reducers/videos'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -12,12 +12,14 @@ class VideoView extends Component {
   static propTypes = {
     videos: T.arrayOf(videoShape).isRequired,
     currentVideo: videoShape,
+    nextVideo: videoShape,
     match: ReactRouterPropTypes.match.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
   }
 
   static defaultProps = {
     currentVideo: undefined,
+    nextVideo: undefined,
   }
 
   componentDidMount = () => {
@@ -41,6 +43,7 @@ class VideoView extends Component {
       [fieldName]: e.target.value,
     })
   }
+
   render() {
     const {
       match: {
@@ -48,11 +51,13 @@ class VideoView extends Component {
       },
       videos,
       currentVideo,
+      nextVideo,
     } = this.props
     return (
       <Fragment>
-        {currentVideo && <Video video={currentVideo} />}
-        <Playlist videos={videos} playlistId={playlistId} />
+        {currentVideo && <Video video={currentVideo} nextVideo={nextVideo} />}
+        <AddVideoForm playlistId={playlistId} />
+        <Playlist videos={videos} />
       </Fragment>
     )
   }
@@ -68,6 +73,7 @@ const mapStateToProps = (
 ) => ({
   videos: getFilteredVideosByPlaylistId(state, playlistId),
   currentVideo: getVideoById(state, videoId),
+  nextVideo: getNextVideoFromPlaylist(state, videoId, playlistId),
 })
 
 export default compose(

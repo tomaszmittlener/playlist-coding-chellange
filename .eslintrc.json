@@ -26,6 +26,7 @@
     "import/no-unresolved": 0,
     "import/extensions": 0,
     "import/prefer-default-export": 0,
-    "react/prefer-stateless-function": "warn"
+    "react/prefer-stateless-function": "warn",
+    "no-debugger": "warn"
   }
 }
