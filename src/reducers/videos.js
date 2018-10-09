@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { ADD_VIDEO } from 'constants/ActionTypes'
+import find from 'lodash/find'
 
 const video = (state = {}, { type, payload }) => {
   switch (type) {
@@ -42,10 +43,15 @@ const videos = combineReducers({
   allIds,
 })
 
-export const getFilteredVideos = (state, filter) => {
+export const getVideoById = (state, videoId) => {
+  const allVideos = state.videos.allIds.map(id => state.videos.byId[id])
+  return find(allVideos, { id: videoId })
+}
+
+export const getFilteredVideosByPlaylistId = (state, playlistId) => {
   const allVideos = state.videos.allIds.map(id => state.videos.byId[id])
 
-  return allVideos.filter(singleVideo => singleVideo.playlist === filter)
+  return allVideos.filter(singleVideo => singleVideo.playlist === playlistId)
 }
 
 export default videos

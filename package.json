@@ -38,6 +38,7 @@
     "react": "^16.0.0",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.0.0",
+    "react-player": "^1.6.6",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-router-prop-types": "^1.0.4",
