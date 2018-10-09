@@ -1,6 +1,5 @@
 import React from 'react'
 import T from 'prop-types'
-
 import { List, VideoItem } from 'components'
 import { videoShape } from 'constants/Shapes'
 
@@ -13,9 +12,9 @@ class Playlist extends React.Component {
     const { videos } = this.props
 
     return (
-      <div>
+      <aside>
         <List items={videos} itemComponent={VideoItem} />
-      </div>
+      </aside>
     )
   }
 }

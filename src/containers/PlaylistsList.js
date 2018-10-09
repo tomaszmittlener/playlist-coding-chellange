@@ -13,9 +13,9 @@ class PlaylistsList extends React.Component {
     const { playlists } = this.props
 
     return (
-      <div>
+      <aside>
         <List items={playlists} itemComponent={PlaylistItem} />
-      </div>
+      </aside>
     )
   }
 }

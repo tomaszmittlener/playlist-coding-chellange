@@ -1,12 +1,28 @@
-import React, { Component, Fragment } from 'react'
-import { Playlist, Video, AddVideoForm } from 'containers'
+import React, { Component } from 'react'
+import styled from 'styled-components'
+import { compose } from 'redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
 import T from 'prop-types'
 import { videoShape } from 'constants/Shapes'
-import { getFilteredVideosByPlaylistId, getVideoById, getNextVideoFromPlaylist } from 'reducers/videos'
-import { compose } from 'redux'
-import { withRouter } from 'react-router-dom'
-import { connect } from 'react-redux'
 import ReactRouterPropTypes from 'react-router-prop-types'
+
+import { getFilteredVideosByPlaylistId, getVideoById, getNextVideoFromPlaylist } from 'reducers/videos'
+
+import { Playlist, Video, AddVideoForm } from 'containers'
+
+const Container = styled.main`
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`
+
+const VideoSection = styled.section`
+  display: flex;
+  flex-direction: column;
+`
 
 class VideoView extends Component {
   static propTypes = {
@@ -54,11 +70,13 @@ class VideoView extends Component {
       nextVideo,
     } = this.props
     return (
-      <Fragment>
-        {currentVideo && <Video video={currentVideo} nextVideo={nextVideo} />}
-        <AddVideoForm playlistId={playlistId} />
+      <Container>
+        <VideoSection>
+          {currentVideo && <Video video={currentVideo} nextVideo={nextVideo} />}
+          <AddVideoForm playlistId={playlistId} />
+        </VideoSection>
         <Playlist videos={videos} />
-      </Fragment>
+      </Container>
     )
   }
 }

@@ -7,7 +7,9 @@ import theme from './theme'
 injectGlobal`
   ${normalize()} 
   body {
-    font-family: sans-serif;
     background: ${theme.colors.primary};
+    color: ${theme.colors.secondary};
+    font-family: ${theme.typo.fonts.primary};
+    font-weight: ${theme.typo.weights.normal};
   }
 `

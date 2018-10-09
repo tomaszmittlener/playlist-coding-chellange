@@ -1,15 +1,20 @@
 import React from 'react'
 import T from 'prop-types'
+import styled from 'styled-components'
 
 import { listItemShape } from 'constants/Shapes'
 
+const Container = styled.ul`
+  padding: 0;
+`
+
 function List({ items, itemComponent: ItemComponent }) {
   return (
-    <ul>
+    <Container>
       {items.map(item => (
         <ItemComponent key={item.id} item={item} />
       ))}
-    </ul>
+    </Container>
   )
 }
 

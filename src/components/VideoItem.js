@@ -1,29 +1,35 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { lighten } from 'polished'
 import { ms } from 'styles/helpers'
 import { videoShape } from 'constants/Shapes'
 
 const Container = styled.li`
-  padding: ${ms(-1)} ${ms(2)};
   display: grid;
   grid-template-columns: 1fr auto;
-  grid-column-gap: ${ms(2)};
   box-shadow: 0 1px 0 ${({ theme: { colors } }) => lighten(0.02, colors.accent)};
-
   &:hover {
     box-shadow: 0 0 6px ${({ theme: { colors } }) => lighten(0.01, colors.accent)};
   }
 `
 
-const Item = styled(Link)`
+const Item = styled(NavLink)`
+  padding: ${ms(-1)} ${ms(2)};
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-decoration: none;
+  &.active {
+    color: ${({ theme: { colors } }) => colors.accent};
+    font-weight: bold;
+    pointer-events: none;
+  }
 `
-const Title = styled.h2``
-const ArtistName = styled.h4``
+
+const Name = styled.span`
+  color: ${({ theme: { colors } }) => colors.secondary};
+`
 
 class VideoItem extends Component {
   static propTypes = {
@@ -38,8 +44,7 @@ class VideoItem extends Component {
     return (
       <Container>
         <Item to={`/${playlist}/${id}`}>
-          <Title>{title}</Title>
-          <ArtistName>{artist}</ArtistName>
+          <Name>{`${artist} — ${title}`}</Name>
         </Item>
       </Container>
     )
