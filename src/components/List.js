@@ -1,7 +1,7 @@
 import React from 'react'
 import T from 'prop-types'
 
-import { videoShape } from 'constants/Shapes'
+import { listItemShape } from 'constants/Shapes'
 
 function List({ items, itemComponent: ItemComponent }) {
   return (
@@ -14,7 +14,7 @@ function List({ items, itemComponent: ItemComponent }) {
 }
 
 List.propTypes = {
-  items: T.arrayOf(videoShape).isRequired,
+  items: T.arrayOf(listItemShape).isRequired,
   itemComponent: T.oneOfType([T.element, T.func]).isRequired,
 }
 

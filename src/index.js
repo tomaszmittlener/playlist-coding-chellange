@@ -8,17 +8,17 @@ import registerServiceWorker from 'utils/registerServiceWorker'
 import { ThemeProvider } from 'styled-components'
 import theme from 'styles/theme'
 import debounce from 'lodash/debounce'
-import { loadVideos, saveVideos } from 'services/localStorageService'
+import { loadState, saveState } from 'services/localStorageService'
 
 const persistedState = {
-  videos: loadVideos(),
+  ...loadState(),
 }
 
 const store = configureStore(persistedState)
 
 store.subscribe(
   debounce(() => {
-    saveVideos(store.getState().videos)
+    saveState(store.getState())
   }),
   1000
 )

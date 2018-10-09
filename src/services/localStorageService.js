@@ -1,25 +1,26 @@
 const PREFIX = 'xite_challenge_'
 
-export const loadVideos = () => {
+// Videos
+export const loadState = () => {
   try {
-    const videos = localStorage.getItem(`${PREFIX}videos`)
+    const state = localStorage.getItem(`${PREFIX}state`)
 
-    if (videos === null) {
+    if (state === null) {
       return undefined
     }
 
-    return JSON.parse(videos)
+    return JSON.parse(state)
   } catch (err) {
     console.error(err) // eslint-disable-line no-console
     return undefined
   }
 }
 
-export const saveVideos = videos => {
+export const saveState = state => {
   try {
-    const videosSerialized = JSON.stringify(videos)
+    const stateSerialized = JSON.stringify(state)
 
-    localStorage.setItem(`${PREFIX}videos`, videosSerialized)
+    localStorage.setItem(`${PREFIX}state`, stateSerialized)
   } catch (err) {
     console.error(err) // eslint-disable-line no-console
   }
