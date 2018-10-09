@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
+import { Playlist } from 'containers'
 
 class HomeView extends Component {
   render() {
-    return (
-      <div>Hello</div>
-    )
+    return <Playlist />
   }
 }
 
