@@ -6,6 +6,49 @@ import uuid from 'uuid/v4'
 import { withRouter } from 'react-router-dom'
 import * as PlaylistsActions from 'actions/playlists'
 
+import styled from 'styled-components'
+import { ms } from 'styles/helpers'
+
+const Form = styled.form`
+  padding: ${ms(1)} ${ms(2)};
+  border: 1px solid ${({ theme: { colors } }) => colors.accent};
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-column-gap: ${ms(2)};
+`
+
+const Input = styled.input`
+  font-family: ${({
+    theme: {
+      typo: { fonts },
+    },
+  }) => fonts.primary};
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: ${ms(0)};
+  height: auto;
+  line-height: 1;
+  &::placeholder {
+    color: ${({ theme: { colors } }) => colors.accent};
+  }
+`
+
+const SubmitButton = styled.input`
+  display: inline-block;
+  background-color: ${({ theme: { colors } }) => colors.secondary};
+  color: ${({ theme: { colors } }) => colors.primary};
+  border: none;
+  margin: 0;
+  padding: ${ms(-5)} ${ms(0)};
+  line-height: 1;
+  transition: background-color 300ms ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme: { colors } }) => colors.accent};
+  }
+`
+
 class AddPlaylistForm extends React.Component {
   static propTypes = {
     addPlaylist: T.func.isRequired,
@@ -21,12 +64,19 @@ class AddPlaylistForm extends React.Component {
     })
   }
 
+  resetFields = () => {
+    this.setState({
+      title: '',
+    })
+  }
+
   handleSubmit = e => {
     this.props.addPlaylist({
       title: this.state.title,
       createdAt: new Date().getTime(),
       id: uuid(),
     })
+    this.resetFields()
     e.preventDefault()
   }
 
@@ -34,10 +84,17 @@ class AddPlaylistForm extends React.Component {
     const { title } = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="text" name="name" placeholder="title" value={title} onChange={e => this.handleInputChange(e)} />
-        <input type="submit" value="Submit" />
-      </form>
+      <Form onSubmit={this.handleSubmit} autocomplete="off">
+        <Input
+          required
+          type="text"
+          name="name"
+          placeholder="add new playlist..."
+          value={title}
+          onChange={e => this.handleInputChange(e)}
+        />
+        <SubmitButton type="submit" value="Add" />
+      </Form>
     )
   }
 }

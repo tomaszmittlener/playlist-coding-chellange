@@ -12,7 +12,25 @@ const Container = styled.main`
   min-height: 100vh;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
+`
+
+const Wrapper = styled.div`
+  width: 100%;
+  
+  @media (min-width: ${({ theme: { mq } }) => `${mq.s}px`}) {
+     width: 80%;
+  }
+  
+  @media (min-width: ${({ theme: { mq } }) => `${mq.m}px`}) {
+     width: 50%;
+  }
+  
+  @media (min-width: ${({ theme: { mq } }) => `${mq.l}px`}}) {
+     width: 40%;
+  }
 `
 
 class HomeView extends Component {
@@ -24,8 +42,10 @@ class HomeView extends Component {
     const { playlists } = this.props
     return (
       <Container>
-        <AddPlaylistForm />
-        <PlaylistsList playlists={playlists} />
+        <Wrapper>
+          <AddPlaylistForm />
+          <PlaylistsList playlists={playlists} />
+        </Wrapper>
       </Container>
     )
   }

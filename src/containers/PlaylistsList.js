@@ -1,8 +1,14 @@
 import React from 'react'
 import T from 'prop-types'
+import styled from 'styled-components'
 
 import { List, PlaylistItem } from 'components'
 import { playlistShape } from 'constants/Shapes'
+import { ms } from 'styles/helpers'
+
+const Container = styled.div`
+  padding: ${ms(0)} 0;
+`
 
 class PlaylistsList extends React.Component {
   static propTypes = {
@@ -13,9 +19,13 @@ class PlaylistsList extends React.Component {
     const { playlists } = this.props
 
     return (
-      <aside>
-        <List items={playlists} itemComponent={PlaylistItem} />
-      </aside>
+      <Container>
+        {playlists.length ? (
+          <List items={playlists} itemComponent={PlaylistItem} />
+        ) : (
+          'There are no playlists to display...'
+        )}
+      </Container>
     )
   }
 }

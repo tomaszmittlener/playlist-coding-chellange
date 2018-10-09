@@ -12,9 +12,7 @@ class Playlist extends React.Component {
     const { videos } = this.props
 
     return (
-      <aside>
-        <List items={videos} itemComponent={VideoItem} />
-      </aside>
+      <aside>{videos.length ? <List items={videos} itemComponent={VideoItem} /> : 'This playlist is empty...'}</aside>
     )
   }
 }
