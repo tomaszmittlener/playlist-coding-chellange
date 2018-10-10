@@ -7,6 +7,7 @@ import { withRouter } from 'react-router-dom'
 import connect from 'react-redux/es/connect/connect'
 import { playlistShape } from 'constants/Shapes'
 import styled from 'styled-components'
+import { ms } from 'styles/helpers'
 
 const Container = styled.main`
   min-height: 100vh;
@@ -33,6 +34,12 @@ const Wrapper = styled.div`
   }
 `
 
+const Title = styled.h2`
+  text-align: center;
+  margin: 0 0 ${ms(2)};
+  font-size: ${ms(4)};
+`
+
 class HomeView extends Component {
   static propTypes = {
     playlists: T.arrayOf(playlistShape).isRequired,
@@ -43,6 +50,7 @@ class HomeView extends Component {
     return (
       <Container>
         <Wrapper>
+          <Title>Xite Coding Chellange</Title>
           <AddPlaylistForm />
           <PlaylistsList playlists={playlists} />
         </Wrapper>

@@ -3,8 +3,9 @@ import T from 'prop-types'
 import styled from 'styled-components'
 import { compose } from 'redux'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import { ms } from 'styles/helpers'
+import { lighten } from 'polished'
 
 import { playlistShape, videoShape } from 'constants/Shapes'
 import ReactRouterPropTypes from 'react-router-prop-types'
@@ -13,6 +14,7 @@ import { getFilteredVideosByPlaylistId, getVideoById, getNextVideoFromPlaylist }
 import { getPlaylistById } from 'reducers/playlists'
 
 import { Playlist, Video, AddVideoForm } from 'containers'
+import { Emoji, Header } from 'components'
 
 const Container = styled.div`
   width: 100%;
@@ -31,8 +33,21 @@ const Container = styled.div`
   }
 `
 
-const Title = styled.h2`
-  border-bottom: 1px solid ${({ theme: { colors } }) => colors.accent};
+const BackButton = styled(NavLink)`
+  display: inline-block;
+  color: ${({ theme: { colors } }) => lighten(0.2, colors.accent)};
+  font-size: ${ms(1)};
+  margin: ${ms(0)} 0;
+  font-weight: ${({
+    theme: {
+      typo: { weights },
+    },
+  }) => weights.normal};
+  text-decoration: none;
+`
+
+const VideoPlaceholder = styled.div`
+  margin: ${ms(3)} 0;
 `
 
 class VideoView extends Component {
@@ -109,14 +124,23 @@ class VideoView extends Component {
     }
     return (
       <Container>
-        <div>
-          {currentVideo && <Video video={currentVideo} nextVideo={nextVideo} />}
+        <section>
+          <BackButton to={'/'}>
+            <Emoji symbol={'⬅️'} />
+            Back to playlists
+          </BackButton>
+          {currentVideo ? (
+            <Video video={currentVideo} nextVideo={nextVideo} />
+          ) : (
+            <VideoPlaceholder>Add your first video to start the playlist...</VideoPlaceholder>
+          )}
+          <Header label={'Add video'} emoji={'➕️'} />
           <AddVideoForm playlistId={playlistId} />
-        </div>
-        <div>
-          <Title>{playlist.title}</Title>
+        </section>
+        <aside>
+          <Header label={playlist.title} emoji={'️📁️️'} />
           <Playlist videos={videos} />
-        </div>
+        </aside>
       </Container>
     )
   }

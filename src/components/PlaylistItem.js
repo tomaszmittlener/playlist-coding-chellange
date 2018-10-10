@@ -70,7 +70,7 @@ class PlaylistItem extends Component {
           <Name>{title}</Name>
         </Item>
         <Action onClick={() => onDelete(id)}>
-          <Emoji symbol={'❌️'} />
+          <Emoji symbol={'✖️️'} />
         </Action>
       </Container>
     )

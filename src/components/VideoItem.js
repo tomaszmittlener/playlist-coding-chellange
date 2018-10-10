@@ -7,13 +7,14 @@ import { videoShape } from 'constants/Shapes'
 import { Emoji } from 'components'
 
 const Container = styled.li`
-  padding: ${ms(-1)};
   display: grid;
+  padding: ${ms(-1)};
   grid-template-columns: auto 1fr auto;
   grid-column-gap: ${ms(-5)};
   border: 1px solid transparent;
   justify-content: space-between;
   align-items: center;
+  transition: border 300ms ease-in-out;
   &:hover {
     border: 1px solid ${({ theme: { colors } }) => colors.secondary};
   }
@@ -69,7 +70,7 @@ class VideoItem extends Component {
           <Name>{`${artist} — ${title}`}</Name>
         </Item>
         <Action onClick={() => onDelete(id)}>
-          <Emoji symbol={'❌️'} />
+          <Emoji symbol={'✖️️'} />
         </Action>
       </Container>
     )
