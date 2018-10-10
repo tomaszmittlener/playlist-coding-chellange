@@ -40,7 +40,7 @@ class VideoView extends Component {
     videos: T.arrayOf(videoShape).isRequired,
     currentVideo: videoShape,
     nextVideo: videoShape,
-    playlist: playlistShape.isRequired,
+    playlist: playlistShape,
     match: ReactRouterPropTypes.match.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
   }
@@ -48,6 +48,7 @@ class VideoView extends Component {
   static defaultProps = {
     currentVideo: undefined,
     nextVideo: undefined,
+    playlist: undefined,
   }
 
   componentDidMount = () => {
@@ -57,11 +58,13 @@ class VideoView extends Component {
       },
       history,
       videos,
+      playlist,
+      currentVideo,
     } = this.props
-    if (!playlistId) {
+    if (!playlistId || !playlist) {
       history.push('/')
     }
-    if (playlistId && !videoId && videos.length) {
+    if ((playlistId && !videoId && videos.length) || (playlistId && !currentVideo && videos.length)) {
       history.push(`/${playlistId}/${videos[0].id}`)
     }
   }
@@ -80,8 +83,11 @@ class VideoView extends Component {
       videos,
       currentVideo,
       nextVideo,
-      playlist: { title },
+      playlist,
     } = this.props
+    if (!playlist) {
+      return null
+    }
     return (
       <Container>
         <div>
@@ -89,7 +95,7 @@ class VideoView extends Component {
           <AddVideoForm playlistId={playlistId} />
         </div>
         <div>
-          <Title>{title}</Title>
+          <Title>{playlist.title}</Title>
           <Playlist videos={videos} />
         </div>
       </Container>
