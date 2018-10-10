@@ -36,8 +36,10 @@ const Wrapper = styled.div`
 
 const Title = styled.h2`
   text-align: center;
-  margin: 0 0 ${ms(2)};
-  font-size: ${ms(4)};
+  font-weight: normal;
+  margin: 0 0 ${ms(5)};
+  font-size: ${ms(5)};
+  color: ${({ theme: { colors } }) => colors.accent};
 `
 
 const HomeView = ({ playlists }) => (

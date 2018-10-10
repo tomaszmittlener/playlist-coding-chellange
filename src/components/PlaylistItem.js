@@ -17,7 +17,7 @@ const Container = styled.li`
   align-items: center;
   transition: border 200ms ease-in-out;
   &:hover {
-    border: 1px solid ${({ theme: { colors } }) => colors.secondary};
+    border: 1px solid ${({ theme: { colors } }) => colors.accent};
   }
 `
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { lighten } from 'polished'
 import T from 'prop-types'
 import { Emoji } from 'components'
 
@@ -12,12 +11,12 @@ const Container = styled.header`
   align-items: center;
   grid-template-columns: auto 1fr;
   grid-column-gap: ${ms(-4)};
-  border-bottom: 1px solid ${({ theme: { colors } }) => colors.accent};
+  border-bottom: 1px solid ${({ theme: { colors } }) => colors.secondary};
 `
 
 const Label = styled.h2`
   display: inline-block;
-  color: ${({ theme: { colors } }) => lighten(0.2, colors.accent)};
+  color: ${({ theme: { colors } }) => colors.accent};
   text-transform: uppercase;
   font-size: ${ms(0)};
   font-weight: ${({

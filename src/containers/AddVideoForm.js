@@ -8,6 +8,7 @@ import { withRouter } from 'react-router-dom'
 import * as VideosActions from 'actions/videos'
 import styled from 'styled-components'
 import { ms } from 'styles/helpers'
+import { lighten } from 'polished'
 
 const Form = styled.form`
   display: grid;
@@ -26,13 +27,13 @@ const Input = styled.input`
     },
   }) => fonts.primary};
   border: none;
-  border-bottom: 1px solid ${({ theme: { colors } }) => colors.accent};
+  border-bottom: 1px solid ${({ theme: { colors } }) => colors.secondary};
   outline: none;
   font-size: ${ms(0)};
   height: auto;
   line-height: 1;
   &::placeholder {
-    color: ${({ theme: { colors } }) => colors.accent};
+    color: ${({ theme: { colors } }) => lighten(0.7, colors.secondary)};
   }
 `
 

@@ -1,6 +1,6 @@
 const theme = {
   colors: {
-    accent: '#5b5b5b',
+    accent: '#ff8624',
     primary: '#fefefe',
     secondary: '#0a0a0a',
   },

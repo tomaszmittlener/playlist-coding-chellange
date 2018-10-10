@@ -9,10 +9,11 @@ import * as PlaylistsActions from 'actions/playlists'
 
 import styled from 'styled-components'
 import { ms } from 'styles/helpers'
+import { lighten } from 'polished'
 
 const Form = styled.form`
   padding: ${ms(0)} ${ms(2)};
-  border: 1px solid ${({ theme: { colors } }) => colors.accent};
+  border: 1px solid ${({ theme: { colors } }) => colors.secondary};
   display: grid;
   grid-template-columns: 1fr auto;
   grid-column-gap: ${ms(2)};
@@ -31,7 +32,7 @@ const Input = styled.input`
   height: auto;
   line-height: 1;
   &::placeholder {
-    color: ${({ theme: { colors } }) => colors.accent};
+    color: ${({ theme: { colors } }) => lighten(0.7, colors.secondary)};
   }
 `
 

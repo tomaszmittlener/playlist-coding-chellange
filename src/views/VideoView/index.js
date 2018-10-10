@@ -5,7 +5,6 @@ import { compose } from 'redux'
 import { connect } from 'react-redux'
 import { withRouter, NavLink } from 'react-router-dom'
 import { ms } from 'styles/helpers'
-import { lighten } from 'polished'
 
 import { playlistShape, videoShape } from 'constants/Shapes'
 import ReactRouterPropTypes from 'react-router-prop-types'
@@ -14,7 +13,7 @@ import { getFilteredVideosByPlaylistId, getVideoById, getNextVideoFromPlaylist }
 import { getPlaylistById } from 'reducers/playlists'
 
 import { Playlist, Video, AddVideoForm } from 'containers'
-import { Emoji, Header } from 'components'
+import { Header } from 'components'
 
 const Container = styled.div`
   padding: ${ms(0)} 0;
@@ -36,19 +35,8 @@ const Container = styled.div`
 `
 
 const BackButton = styled(NavLink)`
-  display: inline-block;
-  color: ${({ theme: { colors } }) => lighten(0.2, colors.accent)};
-  font-size: ${ms(1)};
-  margin: ${ms(-1)} 0;
-  font-weight: ${({
-    theme: {
-      typo: { weights },
-    },
-  }) => weights.normal};
   text-decoration: none;
-  span:first-of-type {
-    margin: 0 ${ms(-4)} 0 0;
-  }
+  width: auto;
 `
 
 const VideoPlaceholder = styled.div`
@@ -136,8 +124,7 @@ class VideoView extends Component {
       <Container>
         <section>
           <BackButton to={'/'}>
-            <Emoji symbol={'🔙️'} />
-            to playlists
+            <Header label={'to playlists'} emoji={'🔙️'} />
           </BackButton>
           {currentVideo ? (
             <Video video={currentVideo} nextVideo={nextVideo} loopVideo={videos.length === 1} />
