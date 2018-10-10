@@ -101,12 +101,6 @@ class VideoView extends Component {
     return null
   }
 
-  handleInputChange = (e, fieldName) => {
-    this.setState({
-      [fieldName]: e.target.value,
-    })
-  }
-
   render() {
     const {
       match: {
