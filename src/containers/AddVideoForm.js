@@ -107,19 +107,19 @@ class AddVideoForm extends React.Component {
         />
         <Input
           type="text"
-          name="title"
-          placeholder="title"
-          value={title}
-          required
-          onChange={e => this.handleInputChange(e, 'title')}
-        />
-        <Input
-          type="text"
           name="artist"
           placeholder="artist"
           value={artist}
           required
           onChange={e => this.handleInputChange(e, 'artist')}
+        />
+        <Input
+          type="text"
+          name="title"
+          placeholder="title"
+          value={title}
+          required
+          onChange={e => this.handleInputChange(e, 'title')}
         />
         <SubmitButton type="submit" value="Submit" />
       </Form>
