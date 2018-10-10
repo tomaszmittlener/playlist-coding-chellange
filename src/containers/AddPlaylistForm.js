@@ -11,7 +11,7 @@ import styled from 'styled-components'
 import { ms } from 'styles/helpers'
 
 const Form = styled.form`
-  padding: ${ms(1)} ${ms(2)};
+  padding: ${ms(0)} ${ms(2)};
   border: 1px solid ${({ theme: { colors } }) => colors.accent};
   display: grid;
   grid-template-columns: 1fr auto;
@@ -41,7 +41,7 @@ const SubmitButton = styled.input`
   color: ${({ theme: { colors } }) => colors.primary};
   border: none;
   margin: 0;
-  padding: ${ms(0)};
+  padding: ${ms(-2)} ${ms(0)};
   line-height: 1;
   transition: background-color 300ms ease-in-out;
   &:hover {

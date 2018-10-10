@@ -17,6 +17,7 @@ import { Playlist, Video, AddVideoForm } from 'containers'
 import { Emoji, Header } from 'components'
 
 const Container = styled.div`
+  padding: ${ms(5)} 0;
   width: 100%;
   flex-direction: column;
   justify-content: center;
@@ -37,13 +38,16 @@ const BackButton = styled(NavLink)`
   display: inline-block;
   color: ${({ theme: { colors } }) => lighten(0.2, colors.accent)};
   font-size: ${ms(1)};
-  margin: ${ms(0)} 0;
+  margin: ${ms(-1)} 0;
   font-weight: ${({
     theme: {
       typo: { weights },
     },
   }) => weights.normal};
   text-decoration: none;
+  span:first-of-type {
+    margin: 0 ${ms(-4)} 0 0;
+  }
 `
 
 const VideoPlaceholder = styled.div`
@@ -131,8 +135,8 @@ class VideoView extends Component {
       <Container>
         <section>
           <BackButton to={'/'}>
-            <Emoji symbol={'⬅️'} />
-            Back to playlists
+            <Emoji symbol={'🔙️'} />
+            to playlists
           </BackButton>
           {currentVideo ? (
             <Video video={currentVideo} nextVideo={nextVideo} loopVideo={videos.length === 1} />

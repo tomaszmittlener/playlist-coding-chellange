@@ -11,7 +11,7 @@ const Container = styled.header`
   margin: ${ms(0)} 0;
   align-items: center;
   grid-template-columns: auto 1fr;
-  grid-column-gap: ${ms(0)};
+  grid-column-gap: ${ms(-4)};
   border-bottom: 1px solid ${({ theme: { colors } }) => colors.accent};
 `
 
