@@ -40,7 +40,7 @@ const SubmitButton = styled.input`
   color: ${({ theme: { colors } }) => colors.primary};
   border: none;
   margin: 0;
-  padding: ${ms(-5)} ${ms(0)};
+  padding: ${ms(0)};
   line-height: 1;
   transition: background-color 300ms ease-in-out;
   &:hover {

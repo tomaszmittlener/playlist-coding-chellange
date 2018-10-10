@@ -5,6 +5,50 @@ import T from 'prop-types'
 import uuid from 'uuid/v4'
 import { withRouter } from 'react-router-dom'
 import * as VideosActions from 'actions/videos'
+import styled from 'styled-components'
+import { ms } from 'styles/helpers'
+
+const Form = styled.form`
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: ${ms(2)};
+  input:last-of-type {
+    margin: ${ms(0)} 0 0 0;
+  }
+`
+
+const Input = styled.input`
+  padding: ${ms(0)} 0;
+  font-family: ${({
+    theme: {
+      typo: { fonts },
+    },
+  }) => fonts.primary};
+  border: none;
+  border-bottom: 1px solid ${({ theme: { colors } }) => colors.accent};
+  outline: none;
+  font-size: ${ms(0)};
+  height: auto;
+  line-height: 1;
+  &::placeholder {
+    color: ${({ theme: { colors } }) => colors.accent};
+  }
+`
+
+const SubmitButton = styled.input`
+  display: inline-block;
+  background-color: ${({ theme: { colors } }) => colors.secondary};
+  color: ${({ theme: { colors } }) => colors.primary};
+  border: none;
+  margin: 0;
+  padding: ${ms(0)};
+  line-height: 1;
+  transition: background-color 300ms ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: ${({ theme: { colors } }) => colors.accent};
+  }
+`
 
 class AddVideoForm extends React.Component {
   static propTypes = {
@@ -25,6 +69,15 @@ class AddVideoForm extends React.Component {
     })
   }
 
+  resetFields = () => {
+    this.setState({
+      videoUrl: '',
+      title: '',
+      artist: '',
+      playlist: '',
+    })
+  }
+
   handleSubmit = e => {
     this.props.addVideo({
       videoUrl: this.state.videoUrl,
@@ -34,6 +87,7 @@ class AddVideoForm extends React.Component {
       createdAt: new Date().getTime(),
       id: uuid(),
     })
+    this.resetFields()
     e.preventDefault()
   }
 
@@ -41,30 +95,33 @@ class AddVideoForm extends React.Component {
     const { videoUrl, title, artist } = this.state
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input
+      <Form onSubmit={this.handleSubmit}>
+        <Input
           type="text"
           name="videoUrl"
           placeholder="url"
           value={videoUrl}
+          required
           onChange={e => this.handleInputChange(e, 'videoUrl')}
         />
-        <input
+        <Input
           type="text"
           name="title"
           placeholder="title"
           value={title}
+          required
           onChange={e => this.handleInputChange(e, 'title')}
         />
-        <input
+        <Input
           type="text"
           name="artist"
           placeholder="artist"
           value={artist}
+          required
           onChange={e => this.handleInputChange(e, 'artist')}
         />
-        <input type="submit" value="Submit" />
-      </form>
+        <SubmitButton type="submit" value="Submit" />
+      </Form>
     )
   }
 }

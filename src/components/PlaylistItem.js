@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import { lighten } from 'polished'
 
 import { ms } from 'styles/helpers'
 import { playlistShape } from 'constants/Shapes'
@@ -9,10 +8,9 @@ import { playlistShape } from 'constants/Shapes'
 const Container = styled.li`
   display: grid;
   grid-template-columns: 1fr auto;
-  box-shadow: 0 1px 0 ${({ theme: { colors } }) => lighten(0.02, colors.accent)};
-
+  border: 1px solid transparent;
   &:hover {
-    box-shadow: 0 0 6px ${({ theme: { colors } }) => lighten(0.01, colors.accent)};
+    border: 1px solid ${({ theme: { colors } }) => colors.secondary};
   }
 `
 

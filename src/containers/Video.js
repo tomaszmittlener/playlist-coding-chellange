@@ -1,7 +1,6 @@
 import React from 'react'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
-
 import ReactRouterPropTypes from 'react-router-prop-types'
 import { videoShape } from 'constants/Shapes'
 
@@ -33,8 +32,7 @@ class Video extends React.Component {
 
     return (
       <div>
-        <h2>{title}</h2>
-        <h3>{artist}</h3>
+        <h2>{`${artist} — ${title}`}</h2>
         <VideoPlayer videoUrl={videoUrl} onEnded={this.handleOnVideoEnd} controls playing />
       </div>
     )

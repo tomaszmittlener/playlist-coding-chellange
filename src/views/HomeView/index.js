@@ -18,7 +18,7 @@ const Container = styled.main`
 `
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 90%;
   
   @media (min-width: ${({ theme: { mq } }) => `${mq.s}px`}) {
      width: 80%;

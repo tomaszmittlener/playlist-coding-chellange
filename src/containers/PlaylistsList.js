@@ -8,6 +8,7 @@ import { ms } from 'styles/helpers'
 
 const Container = styled.div`
   padding: ${ms(0)} 0;
+  width: 100%;
 `
 
 class PlaylistsList extends React.Component {
