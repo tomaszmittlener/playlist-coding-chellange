@@ -17,7 +17,7 @@ import { Playlist, Video, AddVideoForm } from 'containers'
 import { Emoji, Header } from 'components'
 
 const Container = styled.div`
-  padding: ${ms(5)} 0;
+  padding: ${ms(0)} 0;
   width: 100%;
   flex-direction: column;
   justify-content: center;
@@ -27,6 +27,7 @@ const Container = styled.div`
 
   @media (min-width: ${({ theme: { mq } }) => `${mq.s}px`}) {
     grid-template-columns: 70%;
+    padding: ${ms(5)} 0;
   }
 
   @media (min-width: ${({ theme: { mq } }) => `${mq.m}px`}) {
