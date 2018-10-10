@@ -43,7 +43,7 @@ const Title = styled.h2`
 const HomeView = ({ playlists }) => (
   <Container>
     <Wrapper>
-      <Title>Xite Coding Chellange</Title>
+      <Title>Xite Coding Challenge</Title>
       <AddPlaylistForm />
       <PlaylistsList playlists={playlists} />
     </Wrapper>

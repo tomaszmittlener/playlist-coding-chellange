@@ -1,4 +1,4 @@
-# Xite Coding Chellange
+# Xite Coding Challenge
 
 Simple to playlist app with some extra functionality:
 - localStorage support
