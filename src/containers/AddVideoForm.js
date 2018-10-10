@@ -3,6 +3,7 @@ import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
 import T from 'prop-types'
 import uuid from 'uuid/v4'
+import { getCurrentTime } from 'utils'
 import { withRouter } from 'react-router-dom'
 import * as VideosActions from 'actions/videos'
 import styled from 'styled-components'
@@ -84,7 +85,7 @@ class AddVideoForm extends React.Component {
       title: this.state.title,
       artist: this.state.artist,
       playlist: this.props.playlistId,
-      createdAt: new Date().getTime(),
+      createdAt: getCurrentTime(),
       id: uuid(),
     })
     this.resetFields()

@@ -8,11 +8,11 @@ const Container = styled.ul`
   padding: 0;
 `
 
-function List({ items, itemComponent: ItemComponent }) {
+function List({ items, itemComponent: ItemComponent, onItemDelete }) {
   return (
     <Container>
       {items.map(item => (
-        <ItemComponent key={item.id} item={item} />
+        <ItemComponent key={item.id} item={item} onDelete={onItemDelete} />
       ))}
     </Container>
   )
@@ -21,6 +21,7 @@ function List({ items, itemComponent: ItemComponent }) {
 List.propTypes = {
   items: T.arrayOf(listItemShape).isRequired,
   itemComponent: T.oneOfType([T.element, T.func]).isRequired,
+  onItemDelete: T.func.isRequired,
 }
 
 export default List

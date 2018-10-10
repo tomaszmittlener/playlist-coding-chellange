@@ -32,7 +32,15 @@ class VideoPlayer extends Component {
     const { onEnded, videoUrl, controls } = this.props
     return (
       <VideoContainer>
-        <Video url={videoUrl} onEnded={onEnded} playing={false} controls={controls} width="100%" height="100%" />
+        <Video
+          url={videoUrl}
+          onEnded={onEnded}
+          playing={false}
+          controls={controls}
+          width="100%"
+          height="100%"
+          onReady={e => console.log(e)}
+        />
       </VideoContainer>
     )
   }

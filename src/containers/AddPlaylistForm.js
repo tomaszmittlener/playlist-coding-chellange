@@ -3,6 +3,7 @@ import { bindActionCreators, compose } from 'redux'
 import { connect } from 'react-redux'
 import T from 'prop-types'
 import uuid from 'uuid/v4'
+import { getCurrentTime } from 'utils'
 import { withRouter } from 'react-router-dom'
 import * as PlaylistsActions from 'actions/playlists'
 
@@ -73,7 +74,7 @@ class AddPlaylistForm extends React.Component {
   handleSubmit = e => {
     this.props.addPlaylist({
       title: this.state.title,
-      createdAt: new Date().getTime(),
+      createdAt: getCurrentTime(),
       id: uuid(),
     })
     this.resetFields()

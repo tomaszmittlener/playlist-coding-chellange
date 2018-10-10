@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { ADD_PLAYLIST } from 'constants/ActionTypes'
+import { ADD_PLAYLIST, DELETE_PLAYLIST } from 'constants/ActionTypes'
 import find from 'lodash/find'
 
 const playlist = (state = {}, { type, payload }) => {
@@ -23,6 +23,14 @@ const byId = (state = {}, { type, payload }) => {
         [payload.id]: playlist(state[payload.id], { type, payload }),
       }
     }
+    case DELETE_PLAYLIST: {
+      return Object.keys(state).reduce((acc, key) => {
+        if (key !== payload.id) {
+          acc[key] = state[key]
+        }
+        return acc
+      }, {})
+    }
     default:
       return state
   }
@@ -32,6 +40,9 @@ const allIds = (state = [], { type, payload }) => {
   switch (type) {
     case ADD_PLAYLIST: {
       return [payload.id, ...state]
+    }
+    case DELETE_PLAYLIST: {
+      return state.filter(id => id !== payload.id)
     }
     default:
       return state

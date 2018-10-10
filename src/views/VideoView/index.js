@@ -61,11 +61,30 @@ class VideoView extends Component {
       playlist,
       currentVideo,
     } = this.props
+    // redirect to home if playlist doesn't exist
     if (!playlistId || !playlist) {
       history.push('/')
     }
+    // play first video from playlist if video url is wrong
     if ((playlistId && !videoId && videos.length) || (playlistId && !currentVideo && videos.length)) {
       history.push(`/${playlistId}/${videos[0].id}`)
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {
+      history,
+      match: {
+        params: { playlistId },
+      },
+    } = this.props
+    // initialize playlist on first video added
+    if (!prevProps.videos.length && this.props.videos.length) {
+      history.push(`/${playlistId}/${this.props.videos[0].id}`)
+    }
+    // play first video on current video deleted
+    if (prevProps.currentVideo && !this.props.currentVideo) {
+      history.push(`/${playlistId}/${this.props.videos[0].id}`)
     }
   }
 
