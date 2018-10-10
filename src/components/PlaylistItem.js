@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import T from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -51,30 +51,21 @@ const Name = styled.span`
   color: ${({ theme: { colors } }) => colors.secondary};
 `
 
-class PlaylistItem extends Component {
-  static propTypes = {
-    item: playlistShape.isRequired,
-    onDelete: T.func.isRequired,
-  }
+const PlaylistItem = ({ item: { title, id }, onDelete }) => (
+  <Container>
+    <Emoji symbol={'📁️'} />
+    <Item to={id}>
+      <Name>{title}</Name>
+    </Item>
+    <Action onClick={() => onDelete(id)}>
+      <Emoji symbol={'✖️️'} />
+    </Action>
+  </Container>
+)
 
-  render() {
-    const {
-      item: { title, id },
-      onDelete,
-    } = this.props
-
-    return (
-      <Container>
-        <Emoji symbol={'📁️'} />
-        <Item to={id}>
-          <Name>{title}</Name>
-        </Item>
-        <Action onClick={() => onDelete(id)}>
-          <Emoji symbol={'✖️️'} />
-        </Action>
-      </Container>
-    )
-  }
+PlaylistItem.propTypes = {
+  item: playlistShape.isRequired,
+  onDelete: T.func.isRequired,
 }
 
 PlaylistItem.propTypes = {

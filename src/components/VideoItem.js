@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import T from 'prop-types'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
@@ -51,30 +51,21 @@ const Action = styled.button`
   }
 `
 
-class VideoItem extends Component {
-  static propTypes = {
-    item: videoShape.isRequired,
-    onDelete: T.func.isRequired,
-  }
+const VideoItem = ({ item: { title, artist, playlist, id }, onDelete }) => (
+  <Container>
+    <Emoji symbol={'🎬️'} />
+    <Item to={`/${playlist}/${id}`}>
+      <Name>{`${artist} — ${title}`}</Name>
+    </Item>
+    <Action onClick={() => onDelete(id)}>
+      <Emoji symbol={'✖️️'} />
+    </Action>
+  </Container>
+)
 
-  render() {
-    const {
-      item: { title, artist, playlist, id },
-      onDelete,
-    } = this.props
-
-    return (
-      <Container>
-        <Emoji symbol={'🎬️'} />
-        <Item to={`/${playlist}/${id}`}>
-          <Name>{`${artist} — ${title}`}</Name>
-        </Item>
-        <Action onClick={() => onDelete(id)}>
-          <Emoji symbol={'✖️️'} />
-        </Action>
-      </Container>
-    )
-  }
+VideoItem.propTypes = {
+  item: videoShape.isRequired,
+  onDelete: T.func.isRequired,
 }
 
 export default VideoItem

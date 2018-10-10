@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import T from 'prop-types'
 import { PlaylistsList, AddPlaylistForm } from 'containers'
 import { getAllPlaylists } from 'reducers/playlists'
@@ -40,23 +40,18 @@ const Title = styled.h2`
   font-size: ${ms(4)};
 `
 
-class HomeView extends Component {
-  static propTypes = {
-    playlists: T.arrayOf(playlistShape).isRequired,
-  }
+const HomeView = ({ playlists }) => (
+  <Container>
+    <Wrapper>
+      <Title>Xite Coding Chellange</Title>
+      <AddPlaylistForm />
+      <PlaylistsList playlists={playlists} />
+    </Wrapper>
+  </Container>
+)
 
-  render() {
-    const { playlists } = this.props
-    return (
-      <Container>
-        <Wrapper>
-          <Title>Xite Coding Chellange</Title>
-          <AddPlaylistForm />
-          <PlaylistsList playlists={playlists} />
-        </Wrapper>
-      </Container>
-    )
-  }
+HomeView.propTypes = {
+  playlists: T.arrayOf(playlistShape).isRequired,
 }
 
 const mapStateToProps = state => ({
