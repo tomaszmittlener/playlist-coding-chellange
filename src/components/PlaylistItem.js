@@ -15,6 +15,7 @@ const Container = styled.li`
   border: 1px solid transparent;
   justify-content: space-between;
   align-items: center;
+  transition: border 200ms ease-in-out;
   &:hover {
     border: 1px solid ${({ theme: { colors } }) => colors.secondary};
   }
