@@ -21,20 +21,23 @@ class VideoPlayer extends Component {
     playing: T.bool,
     controls: T.bool,
     loop: T.bool,
+    id: T.string,
   }
 
   static defaultProps = {
     playing: false,
     controls: false,
     loop: false,
+    id: '',
     onEnded: () => {},
   }
 
   render() {
-    const { onEnded, videoUrl, controls, playing, loop } = this.props
+    const { onEnded, videoUrl, id, controls, playing, loop } = this.props
     return (
       <VideoContainer>
         <Video
+          key={id}
           url={videoUrl}
           onEnded={onEnded}
           playing={playing}

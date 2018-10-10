@@ -33,14 +33,14 @@ class Video extends React.Component {
 
   render() {
     const {
-      video: { videoUrl, title, artist },
+      video: { videoUrl, id, title, artist },
       loopVideo,
     } = this.props
 
     return (
       <div>
         <h2>{`${artist} — ${title}`}</h2>
-        <VideoPlayer videoUrl={videoUrl} onEnded={this.handleOnVideoEnd} controls playing loop={loopVideo} />
+        <VideoPlayer videoUrl={videoUrl} id={id} onEnded={this.handleOnVideoEnd} controls playing loop={loopVideo} />
       </div>
     )
   }
