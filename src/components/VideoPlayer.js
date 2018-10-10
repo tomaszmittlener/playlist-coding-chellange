@@ -20,19 +20,29 @@ class VideoPlayer extends Component {
     onEnded: T.func,
     playing: T.bool,
     controls: T.bool,
+    loop: T.bool,
   }
 
   static defaultProps = {
     playing: false,
     controls: false,
+    loop: false,
     onEnded: () => {},
   }
 
   render() {
-    const { onEnded, videoUrl, controls, playing } = this.props
+    const { onEnded, videoUrl, controls, playing, loop } = this.props
     return (
       <VideoContainer>
-        <Video url={videoUrl} onEnded={onEnded} playing={playing} controls={controls} width="100%" height="100%" />
+        <Video
+          url={videoUrl}
+          onEnded={onEnded}
+          playing={playing}
+          controls={controls}
+          width="100%"
+          height="100%"
+          loop={loop}
+        />
       </VideoContainer>
     )
   }

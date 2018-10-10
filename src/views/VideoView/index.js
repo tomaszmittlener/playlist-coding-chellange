@@ -95,12 +95,17 @@ class VideoView extends Component {
     } = this.props
     // initialize playlist on first video added
     if (!prevProps.videos.length && this.props.videos.length) {
-      history.push(`/${playlistId}/${this.props.videos[0].id}`)
+      return history.push(`/${playlistId}/${this.props.videos[0].id}`)
     }
-    // play first video on current video deleted
+    // back to playlist if all videos deleted
+    if (prevProps.currentVideo && !this.props.currentVideo && !this.props.videos.length) {
+      return history.push(`/${playlistId}`)
+    }
+    // play first video from playlist if current video deleted
     if (prevProps.currentVideo && !this.props.currentVideo) {
-      history.push(`/${playlistId}/${this.props.videos[0].id}`)
+      return history.push(`/${playlistId}/${this.props.videos[0].id}`)
     }
+    return null
   }
 
   handleInputChange = (e, fieldName) => {
@@ -130,7 +135,7 @@ class VideoView extends Component {
             Back to playlists
           </BackButton>
           {currentVideo ? (
-            <Video video={currentVideo} nextVideo={nextVideo} />
+            <Video video={currentVideo} nextVideo={nextVideo} loopVideo={videos.length === 1} />
           ) : (
             <VideoPlaceholder>Add your first video to start the playlist...</VideoPlaceholder>
           )}

@@ -1,4 +1,5 @@
 import React from 'react'
+import T from 'prop-types'
 import { compose } from 'redux'
 import { withRouter } from 'react-router-dom'
 import ReactRouterPropTypes from 'react-router-prop-types'
@@ -12,6 +13,11 @@ class Video extends React.Component {
     nextVideo: videoShape.isRequired,
     history: ReactRouterPropTypes.history.isRequired,
     match: ReactRouterPropTypes.match.isRequired,
+    loopVideo: T.bool,
+  }
+
+  static defaultProps = {
+    loopVideo: false,
   }
 
   handleOnVideoEnd = () => {
@@ -28,12 +34,13 @@ class Video extends React.Component {
   render() {
     const {
       video: { videoUrl, title, artist },
+      loopVideo,
     } = this.props
 
     return (
       <div>
         <h2>{`${artist} — ${title}`}</h2>
-        <VideoPlayer videoUrl={videoUrl} onEnded={this.handleOnVideoEnd} controls playing />
+        <VideoPlayer videoUrl={videoUrl} onEnded={this.handleOnVideoEnd} controls playing loop={loopVideo} />
       </div>
     )
   }
